@@ -1,7 +1,7 @@
 import React from "react";
 
-import { createAppContainer } from "react-navigation";
-// import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import CommunityScreen from "../screens/CommunityScreen";
@@ -9,18 +9,40 @@ import MessageScreen from "../screens/MessageScreen";
 import OrderScreen from "../screens/OrderScreen";
 import UserScreen from "../screens/UserScreen";
 import OverviewScreen from "../screens/OverviewScreen";
+import AuthScreen from "../screens/AuthScreen";
 import { getTabBarIcon } from "../components/UI/IconWithBadge";
 import Colors from "../constants/Colors";
 
-const TabNavigator = createBottomTabNavigator(
+const OrderStack = createStackNavigator({
+  Orders: OrderScreen
+});
+
+const UserStack = createStackNavigator({
+  User: UserScreen
+});
+
+const AuthStack = createStackNavigator({
+  Auth: AuthScreen
+});
+const OrdersNavigator = createSwitchNavigator({
+  Auth: AuthStack,
+  Orders: OrderStack
+});
+
+const UserNavigator = createSwitchNavigator({
+  Auth: AuthStack,
+  User: UserStack
+});
+
+const AppNavigator = createBottomTabNavigator(
   {
     Overview: {
       screen: OverviewScreen
     },
-    Community: CommunityScreen,
-    Messages: MessageScreen,
-    Orders: OrderScreen,
-    User: UserScreen
+    // Community: CommunityScreen,
+    // Messages: MessageScreen,
+    Orders: OrdersNavigator,
+    User: UserNavigator
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -34,4 +56,4 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(AppNavigator);
