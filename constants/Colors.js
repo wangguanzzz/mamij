@@ -1,3 +1,3 @@
 export default {
-  primary: "pink"
+  primary: "#f5279f"
 };
