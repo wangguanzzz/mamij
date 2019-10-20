@@ -13,6 +13,13 @@ import AuthScreen from "../screens/AuthScreen";
 import { getTabBarIcon } from "../components/UI/IconWithBadge";
 import Colors from "../constants/Colors";
 
+const defaultNavOptions = {
+  headerStyle: {
+    backgroundColor: Colors.primary
+  },
+  headerTintColor: "white"
+};
+
 const OrderStack = createStackNavigator({
   Orders: OrderScreen
 });
@@ -21,9 +28,12 @@ const UserStack = createStackNavigator({
   User: UserScreen
 });
 
-const AuthStack = createStackNavigator({
-  Auth: AuthScreen
-});
+const AuthStack = createStackNavigator(
+  {
+    Auth: AuthScreen
+  },
+  { defaultNavigationOptions: defaultNavOptions }
+);
 const OrdersNavigator = createSwitchNavigator({
   Auth: AuthStack,
   Orders: OrderStack
