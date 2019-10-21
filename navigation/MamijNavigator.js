@@ -10,6 +10,7 @@ import OrderScreen from "../screens/OrderScreen";
 import UserScreen from "../screens/UserScreen";
 import OverviewScreen from "../screens/OverviewScreen";
 import AuthScreen from "../screens/AuthScreen";
+import StartupScreen from "../screens/StartupScreen";
 import { getTabBarIcon } from "../components/UI/IconWithBadge";
 import Colors from "../constants/Colors";
 
@@ -35,11 +36,13 @@ const AuthStack = createStackNavigator(
   { defaultNavigationOptions: defaultNavOptions }
 );
 const OrdersNavigator = createSwitchNavigator({
+  Startup: StartupScreen,
   Auth: AuthStack,
   Orders: OrderStack
 });
 
 const UserNavigator = createSwitchNavigator({
+  Startup: StartupScreen,
   Auth: AuthStack,
   User: UserStack
 });
