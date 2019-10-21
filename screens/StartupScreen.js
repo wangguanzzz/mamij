@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   View,
   ActivityIndicator,
   StyleSheet,
   AsyncStorage
 } from "react-native";
+import AV from "../components/UI/AV";
 
 const StartupScreen = props => {
   useEffect(() => {
     const tryLogin = async () => {
-      const userData = await AsyncStorage.getItem("userData");
-      if (!userData) {
+      const user = await AV.User.currentAsync();
+      if (!user) {
         props.navigation.navigate("Auth");
         return;
       }
-
-      const transformedData = JSON.parse(userData);
-      const { token, userId } = transformedData;
       props.navigation.navigate("Orders");
+      return;
     };
     tryLogin();
   }, []);

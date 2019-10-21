@@ -1,21 +1,17 @@
 import * as FileSystem from "expo-file-system";
-import AV from "leancloud-storage";
+
 import { AsyncStorage } from "react-native";
+import AV from "../../components/UI/AV";
 
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
-
-AV.init({
-  appId: "J9b8lu6jUtEN2bnvpEptJhnq-gzGzoHsz",
-  appKey: "79QqXxxyqXIwOpAqX4CDIqPN",
-  serverURLs: "https://j9b8lu6j.lc-cn-n1-shared.com"
-});
+export const AUTHENTICATE = "AUTHENTICATE";
 
 export const login = (username, password) => {
   return async dispatch => {
     try {
       const user = await AV.User.logIn(username, password);
-      await saveDataToStorage(user.objectId, user.username);
+      // await saveDataToStorage(user.objectId, user.username);
       console.log(user);
     } catch (err) {
       throw err;
@@ -40,6 +36,11 @@ export const signup = (username, password) => {
   };
 };
 
+export const authenticate = () => {
+  return async dispatch => {
+    const user = AV.User.current();
+  };
+};
 const saveDataToStorage = async (token, userId) => {
   await AsyncStorage.setItem(
     "userData",
