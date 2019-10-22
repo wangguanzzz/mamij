@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import ProductItem from "../components/Shop/ProductItem";
 import { SearchBar } from "react-native-elements";
+import Colors from "../constants/Colors";
 
 const OverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
@@ -15,7 +16,11 @@ const OverviewScreen = props => {
   return (
     <View>
       <View>
-        <SearchBar placeholder="Type Here..." onChangeText={() => {}} />
+        <SearchBar
+          containerStyle={{ backgroundColor: Colors.primary }}
+          placeholder="Type Here..."
+          onChangeText={() => {}}
+        />
       </View>
       <FlatList
         numColumns={2}
