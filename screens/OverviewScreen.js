@@ -2,12 +2,15 @@ import React from "react";
 
 import { Text, StyleSheet, FlatList, View } from "react-native";
 import { useSelector } from "react-redux";
-import { Header } from "react-native-elements";
+
 import ProductItem from "../components/Shop/ProductItem";
 import { SearchBar } from "react-native-elements";
 
 const OverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
+  const selectHandler = () => {
+    props.navigation.navigate("Product");
+  };
 
   return (
     <View>
@@ -23,6 +26,8 @@ const OverviewScreen = props => {
             imageUrl={itemData.item.imageUrl}
             title={itemData.item.title}
             description={itemData.item.description}
+            price={itemData.item.price}
+            onSelect={selectHandler}
           />
         )}
       />

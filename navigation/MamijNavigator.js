@@ -11,6 +11,7 @@ import UserScreen from "../screens/UserScreen";
 import OverviewScreen from "../screens/OverviewScreen";
 import AuthScreen from "../screens/AuthScreen";
 import StartupScreen from "../screens/StartupScreen";
+import ProductScreen from "../screens/ProdoctScreen";
 import { getTabBarIcon } from "../components/UI/IconWithBadge";
 import Colors from "../constants/Colors";
 
@@ -38,7 +39,8 @@ const AuthStack = createStackNavigator(
 
 const OverviewStack = createStackNavigator(
   {
-    Overview: OverviewScreen
+    Overview: OverviewScreen,
+    Product: ProductScreen
   },
   {
     headerMode: "none",
