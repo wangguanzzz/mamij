@@ -12,6 +12,7 @@ const GoBack = props => {
   );
 };
 const ProductScreen = props => {
+  const title = props.navigation.getParam("title");
   return (
     <Header
       placement="left"
@@ -22,6 +23,7 @@ const ProductScreen = props => {
           }}
         />
       }
+      centerComponent={<Text>{title}</Text>}
     />
   );
 };

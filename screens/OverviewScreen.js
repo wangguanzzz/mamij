@@ -9,8 +9,8 @@ import Colors from "../constants/Colors";
 
 const OverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
-  const selectHandler = () => {
-    props.navigation.navigate("Product");
+  const selectHandler = title => {
+    props.navigation.navigate("Product", { title: title });
   };
 
   return (
@@ -32,7 +32,7 @@ const OverviewScreen = props => {
             title={itemData.item.title}
             description={itemData.item.description}
             price={itemData.item.price}
-            onSelect={selectHandler}
+            onSelect={selectHandler.bind(this, itemData.item.title)}
           />
         )}
       />
