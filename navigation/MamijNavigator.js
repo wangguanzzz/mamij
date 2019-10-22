@@ -47,6 +47,7 @@ const OverviewStack = createStackNavigator(
     }
   }
 );
+
 const OrdersNavigator = createSwitchNavigator({
   Startup: StartupScreen,
   Auth: AuthStack,
@@ -62,6 +63,7 @@ const UserNavigator = createSwitchNavigator({
 const AppNavigator = createBottomTabNavigator(
   {
     Overview: OverviewStack,
+
     // Community: CommunityScreen,
     // Messages: MessageScreen,
     Orders: OrdersNavigator,
