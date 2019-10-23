@@ -1,9 +1,18 @@
-import products from "../../data/dummy-data";
+import { SET_PRODUCTS } from "../actions/product";
+
 const initialState = {
-  availableProducts: products,
+  availableProducts: [],
   userProducts: []
 };
 
 export default (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case SET_PRODUCTS:
+      return {
+        ...state,
+        availableProducts: action.products
+      };
+    default:
+      return state;
+  }
 };

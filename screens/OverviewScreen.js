@@ -1,25 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Text, StyleSheet, FlatList, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import ProductItem from "../components/Shop/ProductItem";
 import { SearchBar } from "react-native-elements";
 import Colors from "../constants/Colors";
+import * as productsActions from "../store/actions/product";
 
 const OverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
-  const selectHandler = title => {
-    props.navigation.navigate("Product", { title: title });
+  const selectHandler = id => {
+    props.navigation.navigate("Product", { id: id });
   };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(productsActions.setProducts());
+  }, [dispatch]);
 
   return (
     <View>
       <View>
         <SearchBar
-          containerStyle={{ backgroundColor: Colors.primary }}
+          // containerStyle={{ backgroundColor: Colors.primary }}
           placeholder="Type Here..."
           onChangeText={() => {}}
+          platform="ios"
         />
       </View>
       <FlatList
@@ -32,7 +39,7 @@ const OverviewScreen = props => {
             title={itemData.item.title}
             description={itemData.item.description}
             price={itemData.item.price}
-            onSelect={selectHandler.bind(this, itemData.item.title)}
+            onSelect={selectHandler.bind(this, itemData.item.id)}
           />
         )}
       />

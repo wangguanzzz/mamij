@@ -1,4 +1,5 @@
 import Product from "../models/product";
+import AV from "../components/UI/AV";
 
 const PRODUCTS = [
   new Product(
@@ -50,5 +51,17 @@ const PRODUCTS = [
     5.49
   )
 ];
+
+// const Prod = AV.Object.extend("Product");
+
+// PRODUCTS.forEach(p => {
+//   const testprod = new Prod();
+//   testprod.set("ownerId", "system");
+//   testprod.set("title", p.title);
+//   testprod.set("imageUrl", p.imageUrl);
+//   testprod.set("price", p.price);
+//   testprod.set("description", p.description);
+//   testprod.save();
+// });
 
 export default PRODUCTS;
