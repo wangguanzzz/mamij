@@ -12,6 +12,7 @@ import OverviewScreen from "../screens/OverviewScreen";
 import AuthScreen from "../screens/AuthScreen";
 import StartupScreen from "../screens/StartupScreen";
 import ProductScreen from "../screens/ProdoctScreen";
+import WechatLoginScreen from "../screens/WechatLoginScreen";
 import { getTabBarIcon } from "../components/UI/IconWithBadge";
 import Colors from "../constants/Colors";
 
@@ -22,9 +23,20 @@ const defaultNavOptions = {
   headerTintColor: "white"
 };
 
-const OrderStack = createStackNavigator({
-  Orders: OrderScreen
-});
+const noneHeaderOptions = {
+  headerMode: "none",
+  navigationOptions: {
+    headerVisible: false
+  }
+};
+
+const OrderStack = createStackNavigator(
+  {
+    // Wechat: WechatLoginScreen,
+    Orders: OrderScreen
+  },
+  noneHeaderOptions
+);
 
 const UserStack = createStackNavigator({
   User: UserScreen
@@ -42,17 +54,12 @@ const OverviewStack = createStackNavigator(
     Overview: OverviewScreen,
     Product: ProductScreen
   },
-  {
-    headerMode: "none",
-    navigationOptions: {
-      headerVisible: false
-    }
-  }
+  noneHeaderOptions
 );
 
 const OrdersNavigator = createSwitchNavigator({
-  Startup: StartupScreen,
-  Auth: AuthStack,
+  // Startup: StartupScreen,
+  // Auth: AuthStack,
   Orders: OrderStack
 });
 

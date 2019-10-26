@@ -1,7 +1,8 @@
 import { SET_PRODUCTS } from "../actions/product";
 
+import PRODUCTS from "../../data/dummy-data";
 const initialState = {
-  availableProducts: [],
+  availableProducts: PRODUCTS,
   userProducts: []
 };
 
