@@ -1,21 +1,26 @@
 import React, { useEffect } from "react";
 
 import {
-  Text,
   StyleSheet,
   FlatList,
   View,
   ScrollView,
-  ColorPropType
+  Dimensions
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import ProductItem from "../components/Shop/ProductItem";
-import { SearchBar, Icon, Header } from "react-native-elements";
+import { SearchBar, Icon, Header, Image } from "react-native-elements";
 import AdBanner from "../components/Shop/AdBanner";
+import LocationPicker from "../components/UI/LocationPicker";
 
 import * as productsActions from "../store/actions/product";
 import Colors from "../constants/Colors";
+import BannerItem from "../components/Shop/BannerItem";
+
+const { width, height } = Dimensions.get("window");
+
+import ADS from "../data/dummy-ads";
 
 const OverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
@@ -32,18 +37,35 @@ const OverviewScreen = props => {
   return (
     <View>
       <Header>
-        <Icon name="map-marker" type="font-awesome" color="#86939e" size={25} />
+        <LocationPicker />
         <View></View>
         <SearchBar
-          placeholder="Type Here..."
+          placeholder="搜索"
           onChangeText={() => {}}
           platform="ios"
-          containerStyle={{ backgroundColor: Colors.primary, width: 300 }}
+          containerStyle={{
+            backgroundColor: Colors.primary,
+            width: 350
+            // height: 30
+          }}
+          round={true}
+          cancelButtonProps={{ color: "white" }}
         />
       </Header>
 
       <ScrollView>
-        <AdBanner />
+        <AdBanner>
+          {ADS.map(ad => (
+            <BannerItem
+              key={ad.id}
+              height={300}
+              imageUrl={ad.imageUrl}
+              onPress={() => {
+                console.log(`${ad.prodId} is clicked`);
+              }}
+            />
+          ))}
+        </AdBanner>
         <FlatList
           numColumns={2}
           data={products}
@@ -63,6 +85,18 @@ const OverviewScreen = props => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  slide: {
+    flex: 1,
+    width: width,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  text: {
+    color: "#fff",
+    fontSize: 30,
+    fontWeight: "bold"
+  }
+});
 
 export default OverviewScreen;

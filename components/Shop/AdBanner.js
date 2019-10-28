@@ -2,8 +2,9 @@ import React from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
 import SwiperFlatList from "react-native-swiper-flatlist";
 import { Text } from "react-native-elements";
+import BannerItem from "./BannerItem";
 
-const { width, height } = Dimensions.get("window");
+import ADS from "../../data/dummy-ads";
 
 const AdBanner = props => {
   return (
@@ -11,34 +12,17 @@ const AdBanner = props => {
       autoplay
       autoplayDelay={2}
       autoplayLoop
-      index={2}
+      // index={2}
       showPagination
       style={styles.swiperContainer}
     >
-      <View style={{ ...styles.slide, backgroundColor: "pink" }}>
-        <Text style={{ flex: 1 }}>slide1</Text>
-      </View>
-      <View style={{ ...styles.slide, backgroundColor: "blue" }}>
-        <Text style={{ flex: 1 }}>slide2</Text>
-      </View>
-      <View style={{ ...styles.slide, backgroundColor: "red" }}></View>
+      {props.children}
     </SwiperFlatList>
   );
 };
 
 const styles = StyleSheet.create({
-  swiperContainer: { width: "100%", height: 180 },
-  slide: {
-    flex: 1,
-    width: width,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  text: {
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "bold"
-  }
+  swiperContainer: { width: "100%", height: 180 }
 });
 
 export default AdBanner;

@@ -6,33 +6,21 @@ const ProductItem = props => {
   const { imageUrl, title, description, price, onSelect } = props;
 
   return (
-    <Card title={title} containerStyle={styles.card}>
-      <View style={styles.imageContainer}>
-        <TouchableOpacity onPress={onSelect}>
-          <Image
-            style={styles.image}
-            resizeMode="cover"
-            source={{ uri: imageUrl }}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.controlPanel}>
-        <Text>{price.toFixed(2)}</Text>
-        <Icon name="add" />
-      </View>
+    <Card
+      image={{ uri: imageUrl, overflow: "hidden", borderTopRightRadius: 10 }}
+      imageProps={{ borderRadius: 10, overflow: "hidden" }}
+      containerStyle={styles.card}
+    >
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.price}>{price}</Text>
     </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  card: { flex: 1, margin: 5 },
-  image: { width: "100%", height: 200 },
-  imageContainer: { justifyContent: "center", marginBottom: 5 },
-  controlPanel: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }
+  card: { flex: 1, margin: 5, borderRadius: 15 },
+  title: { fontSize: 15 },
+  price: { color: "red", fontSize: 25 }
 });
 
 export default ProductItem;
