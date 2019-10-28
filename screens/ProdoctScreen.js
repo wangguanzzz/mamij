@@ -1,16 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { TouchableOpacity, View, ScrollView, StyleSheet } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { Image, Text, Button, Header, Icon } from "react-native-elements";
+import HeaderGoBack from "../components/UI/HeaderGoBack";
 
-const GoBack = props => {
-  const { onClick } = props;
-  return (
-    <TouchableOpacity onPress={onClick}>
-      <Icon name="arrow-back" color="white" />
-    </TouchableOpacity>
-  );
-};
 const ProductScreen = props => {
   const id = props.navigation.getParam("id");
   const selectedProduct = useSelector(state =>
@@ -21,7 +14,7 @@ const ProductScreen = props => {
       <Header
         placement="left"
         leftComponent={
-          <GoBack
+          <HeaderGoBack
             onClick={() => {
               props.navigation.goBack();
             }}

@@ -1,8 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import { SearchBar, Icon, Button } from "react-native-elements";
+import OrderItem from "../components/Shop/OrderItem";
+
+import ORDERS from "../data/dummy-orders";
 
 const OrderScreen = props => {
+  const selectHandler = id => {
+    // props.navigation.navigate();
+    console.log(`${id} is selected`);
+  };
   return (
     <View>
       <View style={styles.headerContainer}>
@@ -12,7 +19,7 @@ const OrderScreen = props => {
           platform="ios"
         />
       </View>
-     
+
       <View style={styles.categoryContainer}>
         <View style={styles.categoryButton}>
           <Button title="全部" type="clear" />
@@ -24,6 +31,18 @@ const OrderScreen = props => {
           <Button title="完成" type="clear" />
         </View>
       </View>
+      <FlatList
+        data={ORDERS}
+        keyExtractor={item => item.id}
+        renderItem={itemData => (
+          <OrderItem
+            onPress={selectHandler.bind(this, itemData.item.id)}
+            title={itemData.item.title}
+            orgId={itemData.item.orgId}
+            imageUrl={itemData.item.imageUrl}
+          />
+        )}
+      />
     </View>
   );
 };
@@ -36,7 +55,7 @@ const styles = StyleSheet.create({
   },
   categoryContainer: {
     width: "100%",
-    height: 20,
+    height: 40,
     flexDirection: "row"
   },
   categoryButton: {

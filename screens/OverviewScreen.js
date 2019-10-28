@@ -5,18 +5,17 @@ import {
   StyleSheet,
   FlatList,
   View,
-  Dimensions,
-  ScrollView
+  ScrollView,
+  ColorPropType
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import ProductItem from "../components/Shop/ProductItem";
-import { SearchBar, Icon } from "react-native-elements";
-import SwiperFlatList from "react-native-swiper-flatlist";
-import Colors from "../constants/Colors";
-import * as productsActions from "../store/actions/product";
+import { SearchBar, Icon, Header } from "react-native-elements";
+import AdBanner from "../components/Shop/AdBanner";
 
-const { width, height } = Dimensions.get("window");
+import * as productsActions from "../store/actions/product";
+import Colors from "../constants/Colors";
 
 const OverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
@@ -32,41 +31,19 @@ const OverviewScreen = props => {
 
   return (
     <View>
-      <View style={styles.headerContainer}>
-        <View style={styles.mapLocator}>
-          <Icon
-            name="map-marker"
-            type="font-awesome"
-            color="#86939e"
-            size={25}
-          />
-        </View>
-        <View style={styles.searchContainer}>
-          <SearchBar
-            placeholder="Type Here..."
-            onChangeText={() => {}}
-            platform="ios"
-          />
-        </View>
-      </View>
-      <ScrollView>
-        <SwiperFlatList
-          autoplay
-          autoplayDelay={2}
-          autoplayLoop
-          index={2}
-          showPagination
-          style={styles.swiperContainer}
-        >
-          <View style={{ ...styles.slide, backgroundColor: "pink" }}>
-            <Text style={{ flex: 1 }}>slide1</Text>
-          </View>
-          <View style={{ ...styles.slide, backgroundColor: "blue" }}>
-            <Text style={{ flex: 1 }}>slide2</Text>
-          </View>
-          <View style={{ ...styles.slide, backgroundColor: "red" }}></View>
-        </SwiperFlatList>
+      <Header>
+        <Icon name="map-marker" type="font-awesome" color="#86939e" size={25} />
+        <View></View>
+        <SearchBar
+          placeholder="Type Here..."
+          onChangeText={() => {}}
+          platform="ios"
+          containerStyle={{ backgroundColor: Colors.primary, width: 300 }}
+        />
+      </Header>
 
+      <ScrollView>
+        <AdBanner />
         <FlatList
           numColumns={2}
           data={products}
@@ -86,30 +63,6 @@ const OverviewScreen = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  mapLocator: {
-    flex: 2
-  },
-  searchContainer: {
-    flex: 8
-  },
-  swiperContainer: { width: "100%", height: 300 },
-  slide: {
-    flex: 1,
-    width: width,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  text: {
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "bold"
-  }
-});
+const styles = StyleSheet.create({});
 
 export default OverviewScreen;

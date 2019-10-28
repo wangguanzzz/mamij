@@ -38,9 +38,12 @@ const OrderStack = createStackNavigator(
   noneHeaderOptions
 );
 
-const UserStack = createStackNavigator({
-  User: UserScreen
-});
+const UserStack = createStackNavigator(
+  {
+    User: UserScreen
+  },
+  noneHeaderOptions
+);
 
 const AuthStack = createStackNavigator(
   {
@@ -64,8 +67,8 @@ const OrdersNavigator = createSwitchNavigator({
 });
 
 const UserNavigator = createSwitchNavigator({
-  Startup: StartupScreen,
-  Auth: AuthStack,
+  // Startup: StartupScreen,
+  // Auth: AuthStack,
   User: UserStack
 });
 
