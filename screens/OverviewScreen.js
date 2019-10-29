@@ -63,6 +63,7 @@ const OverviewScreen = props => {
               onPress={() => {
                 console.log(`${ad.prodId} is clicked`);
               }}
+              avatarUrl="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike116%2C5%2C5%2C116%2C38/sign=320fe0f39bcad1c8c4b6f4751e570c6c/7c1ed21b0ef41bd5af2f18285fda81cb38db3de9.jpg"
             />
           ))}
         </AdBanner>

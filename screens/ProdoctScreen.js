@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { View, ScrollView, StyleSheet } from "react-native";
-import { Image, Text, Button, Header, Icon } from "react-native-elements";
+import { Image, Text, Button, Header } from "react-native-elements";
 import HeaderGoBack from "../components/UI/HeaderGoBack";
 
 const ProductScreen = props => {
